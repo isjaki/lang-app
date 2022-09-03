@@ -53,9 +53,8 @@ public class WordService {
         return this.wordRepository.save(newWord);
     }
 
-    public Word updateWord(Word word) {
-        int wordId = word.getId();
-        Word wordToUpdate = wordRepository.findById(wordId).orElseThrow(() -> new WordNotFoundException(wordId));
+    public Word updateWord(int id, Word word) {
+        Word wordToUpdate = wordRepository.findById(id).orElseThrow(() -> new WordNotFoundException(id));
 
         wordToUpdate.setWordType(word.getWordType());
         wordToUpdate.setTerm(word.getTerm());

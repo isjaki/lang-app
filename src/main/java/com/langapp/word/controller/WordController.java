@@ -31,10 +31,9 @@ public class WordController {
         return wordService.saveWord(word);
     }
 
-    // /words/{id}
-    @PutMapping("/words")
-    public Word updateWord(@RequestBody Word word) {
-        return wordService.updateWord(word);
+    @PutMapping("/words/{id}")
+    public Word updateWord(@PathVariable int id, @RequestBody Word word) {
+        return wordService.updateWord(id, word);
     }
 
     @DeleteMapping("/words/{id}")
