@@ -31,7 +31,7 @@ public class WordService {
     }
 
     // createWord
-    public Word saveWord(WordDTO word) {
+    public Word createWord(WordDTO word) {
         Word newWord = new Word();
 
         newWord.setWordType(word.getWordType());

@@ -28,7 +28,7 @@ public class WordController {
 
     @PostMapping("/words")
     public Word createWord(@RequestBody WordDTO word) {
-        return wordService.saveWord(word);
+        return wordService.createWord(word);
     }
 
     @PutMapping("/words/{id}")
