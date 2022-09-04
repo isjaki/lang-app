@@ -7,7 +7,7 @@ public class WordRequestDTO {
     private String gender;
     private String term;
     private String plural;
-    private List<TranslationDTO> translations;
+    private List<Integer> translationIds;
 
     public WordRequestDTO() {}
 
@@ -43,25 +43,11 @@ public class WordRequestDTO {
         this.plural = plural;
     }
 
-    public List<TranslationDTO> getTranslations() {
-        return translations;
+    public List<Integer> getTranslationIds() {
+        return translationIds;
     }
 
-    public void setTranslations(List<TranslationDTO> translations) {
-        this.translations = translations;
-    }
-
-    public static class TranslationDTO {
-        private Integer id;
-
-        public TranslationDTO() {}
-
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
+    public void setTranslationIds(List<Integer> translationIds) {
+        this.translationIds = translationIds;
     }
 }

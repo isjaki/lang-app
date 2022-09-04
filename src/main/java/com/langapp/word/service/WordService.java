@@ -60,10 +60,10 @@ public class WordService {
         word.setGender(wordDTO.getGender());
         word.setPlural(wordDTO.getPlural());
 
-        List<Translation> translations = wordDTO.getTranslations().stream()
-                .map(translationDto -> {
+        List<Translation> translations = wordDTO.getTranslationIds().stream()
+                .map(translationId -> {
                     Translation translation = new Translation();
-                    translation.setId(translationDto.getId());
+                    translation.setId(translationId);
 
                     return translation;
                 })
