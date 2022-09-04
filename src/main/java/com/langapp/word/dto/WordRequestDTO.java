@@ -2,15 +2,14 @@ package com.langapp.word.dto;
 
 import java.util.List;
 
-// WordRequestDTO
-public class WordDTO {
+public class WordRequestDTO {
     private String wordType;
     private String gender;
     private String term;
     private String plural;
     private List<TranslationDTO> translations;
 
-    public WordDTO() {}
+    public WordRequestDTO() {}
 
     public String getWordType() {
         return wordType;

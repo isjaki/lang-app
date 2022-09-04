@@ -1,6 +1,6 @@
 package com.langapp.word.service;
 
-import com.langapp.word.dto.WordDTO;
+import com.langapp.word.dto.WordRequestDTO;
 import com.langapp.word.entity.Translation;
 import com.langapp.word.entity.Word;
 import com.langapp.word.exception.WordNotFoundException;
@@ -30,7 +30,7 @@ public class WordService {
         return this.wordRepository.findAll(Example.of(word));
     }
 
-    public Word createWord(WordDTO wordDTO) {
+    public Word createWord(WordRequestDTO wordDTO) {
         Word word = mapWordDtoToEntity(wordDTO);
 
         return this.wordRepository.save(word);
@@ -52,7 +52,7 @@ public class WordService {
         wordRepository.deleteById(id);
     }
 
-    private Word mapWordDtoToEntity(WordDTO wordDTO) {
+    private Word mapWordDtoToEntity(WordRequestDTO wordDTO) {
         Word word = new Word();
 
         word.setWordType(wordDTO.getWordType());

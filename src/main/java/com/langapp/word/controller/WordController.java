@@ -1,6 +1,6 @@
 package com.langapp.word.controller;
 
-import com.langapp.word.dto.WordDTO;
+import com.langapp.word.dto.WordRequestDTO;
 import com.langapp.word.entity.Word;
 import com.langapp.word.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class WordController {
     }
 
     @PostMapping("/words")
-    public Word createWord(@RequestBody WordDTO word) {
+    public Word createWord(@RequestBody WordRequestDTO word) {
         return wordService.createWord(word);
     }
 
