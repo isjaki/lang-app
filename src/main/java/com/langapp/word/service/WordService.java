@@ -36,8 +36,10 @@ public class WordService {
         return this.wordRepository.save(word);
     }
 
-    public Word updateWord(int id, Word word) {
+    public Word updateWord(int id, WordRequestDTO wordRequestDTO) {
         Word wordToUpdate = wordRepository.findById(id).orElseThrow(() -> new WordNotFoundException(id));
+
+        Word word = mapWordDtoToEntity(wordRequestDTO);
 
         wordToUpdate.setWordType(word.getWordType());
         wordToUpdate.setTerm(word.getTerm());

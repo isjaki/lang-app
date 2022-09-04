@@ -32,8 +32,8 @@ public class WordController {
     }
 
     @PutMapping("/words/{id}")
-    public Word updateWord(@PathVariable int id, @RequestBody Word word) {
-        return wordService.updateWord(id, word);
+    public Word updateWord(@PathVariable int id, @RequestBody WordRequestDTO wordRequestDTO) {
+        return wordService.updateWord(id, wordRequestDTO);
     }
 
     @DeleteMapping("/words/{id}")
