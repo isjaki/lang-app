@@ -30,27 +30,10 @@ public class WordService {
         return this.wordRepository.findAll(Example.of(word));
     }
 
-    // createWord
-    public Word createWord(WordDTO word) {
-        Word newWord = new Word();
+    public Word createWord(WordDTO wordDTO) {
+        Word word = mapWordDtoToEntity(wordDTO);
 
-        newWord.setWordType(word.getWordType());
-        newWord.setTerm(word.getTerm());
-        newWord.setGender(word.getGender());
-        newWord.setPlural(word.getPlural());
-
-        List<Translation> translations = word.getTranslations().stream()
-                .map(translationDto -> {
-                    Translation translation = new Translation();
-                    translation.setId(translationDto.getId());
-
-                    return translation;
-                })
-                .collect(Collectors.toList());
-
-        newWord.setTranslations(translations);
-
-        return this.wordRepository.save(newWord);
+        return this.wordRepository.save(word);
     }
 
     public Word updateWord(int id, Word word) {
@@ -67,5 +50,27 @@ public class WordService {
 
     public void deleteWordById(int id) {
         wordRepository.deleteById(id);
+    }
+
+    private Word mapWordDtoToEntity(WordDTO wordDTO) {
+        Word word = new Word();
+
+        word.setWordType(wordDTO.getWordType());
+        word.setTerm(wordDTO.getTerm());
+        word.setGender(wordDTO.getGender());
+        word.setPlural(wordDTO.getPlural());
+
+        List<Translation> translations = wordDTO.getTranslations().stream()
+                .map(translationDto -> {
+                    Translation translation = new Translation();
+                    translation.setId(translationDto.getId());
+
+                    return translation;
+                })
+                .collect(Collectors.toList());
+
+        word.setTranslations(translations);
+
+        return word;
     }
 }
