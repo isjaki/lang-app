@@ -21,6 +21,10 @@ public class WordService {
         this.wordRepository = wordRepository;
     }
 
+    public Word getWordById(int id) {
+        return wordRepository.findById(id).orElseThrow(() -> new WordNotFoundException(id));
+    }
+
     public Iterable<Word> getWordsByParam(String type, String gender, String term) {
         Word word = new Word();
         word.setWordType(type);

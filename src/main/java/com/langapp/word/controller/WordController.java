@@ -26,6 +26,11 @@ public class WordController {
                 term.orElse(null));
     }
 
+    @GetMapping("/words/{id}")
+    public Word getWordById(@PathVariable int id) {
+        return wordService.getWordById(id);
+    }
+
     @PostMapping("/words")
     public Word createWord(@RequestBody WordRequestDTO word) {
         return wordService.createWord(word);
