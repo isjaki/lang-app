@@ -5,6 +5,8 @@ import com.langapp.word.entity.Word;
 import com.langapp.word.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -32,12 +34,12 @@ public class WordController {
     }
 
     @PostMapping("/words")
-    public Word createWord(@RequestBody WordRequestDTO word) {
+    public Word createWord(@RequestBody @Valid WordRequestDTO word) {
         return wordService.createWord(word);
     }
 
     @PutMapping("/words/{id}")
-    public Word updateWord(@PathVariable int id, @RequestBody WordRequestDTO wordRequestDTO) {
+    public Word updateWord(@PathVariable int id, @RequestBody @Valid WordRequestDTO wordRequestDTO) {
         return wordService.updateWord(id, wordRequestDTO);
     }
 

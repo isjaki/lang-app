@@ -1,13 +1,21 @@
 package com.langapp.word.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class WordRequestDTO {
+    @NotBlank(message = "word type cannot be blank")
     private String wordType;
-    private String gender;
+
+    @NotBlank(message = "term cannot be blank")
     private String term;
-    private String plural;
+
+    @NotNull(message = "translation ids cannot be null")
     private List<Integer> translationIds;
+
+    private String gender;
+    private String plural;
 
     public WordRequestDTO() {}
 
