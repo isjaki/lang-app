@@ -16,7 +16,6 @@ import javax.persistence.Id;
 public class Translation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // int -> Long ?
     private Integer id;
 
     private String text;

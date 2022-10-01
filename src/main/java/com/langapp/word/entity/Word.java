@@ -14,7 +14,6 @@ import java.util.List;
 public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Integer -> Long ?
     private Integer id;
 
     private String term;
