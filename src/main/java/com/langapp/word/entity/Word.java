@@ -30,16 +30,4 @@ public class Word {
             joinColumns = @JoinColumn(name = "word_id"),
             inverseJoinColumns = @JoinColumn(name = "translation_id"))
     private List<Translation> translations;
-
-    @Override
-    public String toString() {
-        return "Word{" +
-                "id=" + id +
-                ", term='" + term + '\'' +
-                ", plural='" + plural + '\'' +
-                ", gender='" + gender + '\'' +
-                ", wordType='" + wordType + '\'' +
-                ", translations=" + translations +
-                '}';
-    }
 }
