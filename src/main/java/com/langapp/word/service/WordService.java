@@ -1,7 +1,7 @@
 package com.langapp.word.service;
 
+import com.langapp.word.dto.WordMapper;
 import com.langapp.word.dto.WordRequestDTO;
-import com.langapp.word.entity.Translation;
 import com.langapp.word.entity.Word;
 import com.langapp.word.exception.WordNotFoundException;
 import com.langapp.word.repository.WordRepository;
@@ -9,16 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class WordService {
     private final WordRepository wordRepository;
+    private final WordMapper wordMapper;
 
     @Autowired
-    public WordService(WordRepository wordRepository) {
+    public WordService(WordRepository wordRepository, WordMapper wordMapper) {
         this.wordRepository = wordRepository;
+        this.wordMapper = wordMapper;
     }
 
     public Word getWordById(int id) {
@@ -35,7 +35,7 @@ public class WordService {
     }
 
     public Word createWord(WordRequestDTO wordDTO) {
-        Word word = mapWordDtoToEntity(wordDTO);
+        Word word = wordMapper.mapWordRequestDtoToEntity(wordDTO);
 
         return this.wordRepository.save(word);
     }
@@ -43,7 +43,7 @@ public class WordService {
     public Word updateWord(int id, WordRequestDTO wordRequestDTO) {
         Word wordToUpdate = wordRepository.findById(id).orElseThrow(() -> new WordNotFoundException(id));
 
-        Word word = mapWordDtoToEntity(wordRequestDTO);
+        Word word = wordMapper.mapWordRequestDtoToEntity(wordRequestDTO);
 
         wordToUpdate.setWordType(word.getWordType());
         wordToUpdate.setTerm(word.getTerm());
@@ -56,27 +56,5 @@ public class WordService {
 
     public void deleteWordById(int id) {
         wordRepository.deleteById(id);
-    }
-
-    private Word mapWordDtoToEntity(WordRequestDTO wordDTO) {
-        Word word = new Word();
-
-        word.setWordType(wordDTO.getWordType());
-        word.setTerm(wordDTO.getTerm());
-        word.setGender(wordDTO.getGender());
-        word.setPlural(wordDTO.getPlural());
-
-        List<Translation> translations = wordDTO.getTranslationIds().stream()
-                .map(translationId -> {
-                    Translation translation = new Translation();
-                    translation.setId(translationId);
-
-                    return translation;
-                })
-                .collect(Collectors.toList());
-
-        word.setTranslations(translations);
-
-        return word;
     }
 }
